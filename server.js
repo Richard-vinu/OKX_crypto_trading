@@ -7,12 +7,13 @@ const PORT = 3000
 app.get('/test',(req,res)=>res.send('runnig api'))
 
 const SecretKey = "D2BF35CD4DCB1C0070CF1D75BDF2B2B0"
+const ROOT_URL = 'https://www.okex.com'
 var time = new Date();
 var timestamp = time.toISOString();
 let method = 'GET'
 let endpoint = 'api/v5/trade/order'
 let sign = CryptoJS.enc.Base64.stringify(CryptoJS.HmacSHA256(timestamp + method + endpoint, SecretKey))
-const ROOT_URL = 'https://www.okex.com'
+
 
 
 const KEY = "98bfae6f-cbf6-41d0-9326-b7d42572acd7"
