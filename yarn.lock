@@ -325,6 +325,11 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
+hmac@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/hmac/-/hmac-1.0.1.tgz#16bda6b8ad5ae70848a1b9ec7c6f3577dfb19b24"
+  integrity sha512-7pSzEtIx7WBY04FDVFvdU7gufDrdthJIfQuW3eM6tSNcCWWBW2zSYDgYT74vwys74vuasInzgo5e1Rc4Uoh70Q==
+
 http-errors@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-2.0.0.tgz#b7774a1486ef73cf7667ac9ae0858c012c57b9d3"

@@ -1,22 +1,33 @@
 import  express  from "express";
 import CryptoJS from 'crypto';
-
+import hmac from 'hmac'
 const app = express()
 const PORT = 3000
 
-app.get('/test',(req,res)=>res.send('runnig api'))
-
-const SecretKey = "D2BF35CD4DCB1C0070CF1D75BDF2B2B0"
+app.get('/test',(req,res)=>{
+ try {
+    
+const secret_key = "D2BF35CD4DCB1C0070CF1D75BDF2B2B0"
 const ROOT_URL = 'https://www.okex.com'
 var time = new Date();
 var timestamp = time.toISOString();
 let method = 'GET'
 let endpoint = 'api/v5/trade/order'
-let sign = CryptoJS.enc.Base64.stringify(CryptoJS.HmacSHA256(timestamp + method + endpoint, SecretKey))
+//let sign = CryptoJS.enc.Base64.stringify(CryptoJS.HmacSHA256(timestamp + method + endpoint, SecretKey))
+
+
+let sign = timestamp + 'GET' + endpoint
+total_params = bytes(sign, encoding= 'utf-8')
+signature = hmac.new(bytes(secret_key, encoding= 'utf-8'), total_params, digestmod=hashlib.sha256).digest()
+signature = base64.b64encode(signature)
+console.log("signature = {0}".format(signature))
 
 
 
-const KEY = "98bfae6f-cbf6-41d0-9326-b7d42572acd7"
+
+//console.log(`this is sign ${sign}`);
+
+const APIKEY = "98bfae6f-cbf6-41d0-9326-b7d42572acd7"
 // const SIGN = sign
 // const TIMESTAMP = timesta
 const PASSPHRASE = 'Richard@1'
@@ -27,7 +38,12 @@ const PASSPHRASE = 'Richard@1'
     header['OK-ACCESS-TIMESTAMP'] = timestamp
     header['OK-ACCESS-PASSPHRASE'] = PASSPHRASE
 
+    res.send('yeah BOy')
+} catch (error) {
+    console.log(error);
+}
 
+})
 app.listen(PORT,()=>console.log(`server listing on ${PORT} `))
 
 
@@ -126,4 +142,3 @@ app.listen(PORT,()=>console.log(`server listing on ${PORT} `))
 //       });
 //   }
 
-// }
